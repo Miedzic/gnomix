@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tanie Spanie - pokoje</title>
+</head>
+<body>
+<h2>Lista pokoi</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Numer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.number}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

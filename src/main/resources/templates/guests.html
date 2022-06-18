@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tanie Spanie - goście</title>
+</head>
+<body>
+    <h2>Lista gości</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Data urodzenia</th>
+            <th>Płeć</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tr th:each="guest : ${guests}">
+        <td th:text="${guest.firstName}"></td>
+        <td th:text="${guest.lastName}"></td>
+        <td th:text="${guest.dateOfBirth}"></td>
+        <td th:text="${guest.gender}"></td>
+    </tr>
+</table>
+</body>
+</html>
