@@ -29,4 +29,19 @@ public class GuestRepository {
         Guest newOne = new Guest(firstName, lastName, birthdate, gender);
        guests.add(newOne);
     }
+    public void removeById(long id){
+        Guest guestToBeDelete = getById(id);
+                /*guests.stream()
+                .filter(guest -> guest.getId() == id)
+                .findFirst()
+                .orElseThrow();*/
+        guests.remove(guestToBeDelete);
+    }
+
+    public Guest getById(final long id) {
+        return guests.stream()
+                .filter(guest -> guest.getId() == id)
+                .findFirst()
+                .orElseThrow();
+    }
 }

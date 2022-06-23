@@ -1,5 +1,6 @@
 package com.example.gnomix.controller;
 
+import com.example.gnomix.domain.dao.BedType;
 import com.example.gnomix.domain.dao.Room;
 import com.example.gnomix.service.GuestService;
 import com.example.gnomix.service.RoomService;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,10 +25,9 @@ public class RoomControllerTest {
     @MockBean
     private RoomService roomService;
     @Test
-    public void testBasicExample() throws Exception {
-        Room room = new Room("1408");
-
-        Mockito.when(roomService.findAll()).thenReturn(Arrays.asList(room));
+    public void basic() throws Exception {
+        Room r = new Room("1408", List.of(BedType.DOUBLE));
+        Mockito.when(roomService.findAll()).thenReturn(List.of(r));
         mockMvc.perform(get("/rooms"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("rooms"))

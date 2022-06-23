@@ -1,9 +1,4 @@
 package com.example.gnomix.controller;
-import static org.hamcrest.Matchers.any;
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.example.gnomix.domain.dao.Gender;
 import com.example.gnomix.domain.dao.Guest;
@@ -21,6 +16,11 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 @WebMvcTest(GuestController.class)
 public class GuestControllerTest {
 
@@ -30,8 +30,8 @@ public class GuestControllerTest {
     private GuestService guestService;
 
     @Test
-    public void testBasicExample() throws Exception{
-        Guest guest = new Guest("Mateusz","Dziedzic", LocalDate.of(1998,4,28), Gender.MALE);
+    public void testBasicExample() throws Exception {
+        Guest guest = new Guest("Mateusz", "Dziedzic", LocalDate.of(1998, 4, 28), Gender.MALE);
 
         Mockito.when(guestService.findAll()).thenReturn(Arrays.asList(guest));
         mockMvc.perform(get("/guests"))
@@ -40,16 +40,18 @@ public class GuestControllerTest {
                 .andExpect(view().name("guests"))
                 .andExpect(content().string(containsString("1998-04-28")));
     }
+
     @Test
     public void handlePost() throws Exception {
         String postContent = "firstName=Pawel&lastName=Cwik&dateOfBirth=2021-09-15&gender=FEMALE";
         MockHttpServletRequestBuilder request =
-                post("/createNewGuest")
+                post("/guests")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                         .content(postContent);
         mockMvc.perform(request)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("guests"));
+
         GuestDto dto = new GuestDto(
                 "Pawel",
                 "Cwik",

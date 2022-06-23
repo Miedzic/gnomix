@@ -26,6 +26,12 @@ xmlns:th="http://www.thymeleaf.org">
         <td th:text="${guest.lastName}"></td>
         <td th:text="${guest.dateOfBirth}"></td>
         <td th:text="${guest.gender}"></td>
+        <td>
+            <a th:href="@{/guests/delete/{id}(id=${guest.id})}">Usuń</a>
+        </td>
+        <td>
+            <a th:href="@{/guests/update/{id}(id=${guest.id})}">Edytuj</a>
+        </td>
     </tr>
 </table>
 </body>

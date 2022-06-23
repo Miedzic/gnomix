@@ -22,7 +22,19 @@ public class GuestServiceImpl implements GuestService {
 
 
     public void createNewGuest(GuestDto guestDto){
-        System.out.println(guestDto);
         guestRepository.createNewGuest(guestDto.getFirstName(),guestDto.getLastName(),guestDto.getDateOfBirth(),guestDto.getGender());
+    }
+    public void removeById(Long id){
+        guestRepository.removeById(id);
+    }
+
+    @Override
+    public Guest getById(final long id) {
+        return guestRepository.getById(id);
+    }
+
+    @Override
+    public void update(final GuestDto guestDto) {
+
     }
 }
