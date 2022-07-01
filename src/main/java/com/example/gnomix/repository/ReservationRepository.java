@@ -1,4 +1,7 @@
 package com.example.gnomix.repository;
 
-public class ReservationRepository {
+import com.example.gnomix.domain.dao.Reservation;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 }

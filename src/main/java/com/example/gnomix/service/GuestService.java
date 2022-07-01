@@ -2,6 +2,7 @@ package com.example.gnomix.service;
 
 import com.example.gnomix.domain.dao.Guest;
 import com.example.gnomix.domain.dto.GuestDto;
+import com.example.gnomix.domain.dto.GuestUpdateDto;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface GuestService {
 
     Guest getById(long id);
 
-    void update(GuestDto guestDto);
+    void update(GuestUpdateDto updatedGuest);
 }

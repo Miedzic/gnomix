@@ -17,18 +17,36 @@ import java.util.stream.Collectors;
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
 
-    @Override
     public List<Room> findAll() {
         return roomRepository.findAll();
     }
 
-    @Override
-    public Room createNewRoom(final String number, final String bedsDesc) {
+    public Room createNewRoom(String roomNumber, String bedsDesc) {
+        List<BedType> beds = getBedTypesList(bedsDesc);
+        Room newOne = new Room(roomNumber, beds);
+        return this.roomRepository.save(newOne);
+    }
+
+    public void removeById(long id) {
+        this.roomRepository.deleteById(id);
+    }
+
+    public Room findById(long id) {
+        return this.roomRepository.getById(id);
+    }
+
+    public void update(long id, String number, String bedsDesc) {
+        Room toUpdate = this.roomRepository.getById(id);
+        List<BedType> beds = getBedTypesList(bedsDesc);
+        toUpdate.update(number, beds);
+        this.roomRepository.save(toUpdate);
+    }
+
+    private List<BedType> getBedTypesList(String bedsDesc) {
         String[] splitedBedDec = bedsDesc.split("\\+");
-        List<BedType> beds = Arrays.stream(splitedBedDec)
+        return Arrays.stream(splitedBedDec)
                 .map(stringToBedTypeMapping)
                 .collect(Collectors.toList());
-        return this.roomRepository.createNewRoom(number, beds);
     }
 
     private final Function<String, BedType> stringToBedTypeMapping = value -> {

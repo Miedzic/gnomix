@@ -51,7 +51,6 @@ public class GuestControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("guests"));
-
         GuestDto dto = new GuestDto(
                 "Pawel",
                 "Cwik",
@@ -59,5 +58,26 @@ public class GuestControllerTest {
                 Gender.FEMALE
         );
         Mockito.verify(guestService, Mockito.times(1)).createNewGuest(dto);
+    }
+    @Test
+    public void handleDelete() throws Exception {
+        MockHttpServletRequestBuilder request =
+                get("/guests/delete/21");
+        mockMvc.perform(request)
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/guests"));
+        Mockito.verify(guestService, Mockito.times(1)).removeById(21L);
+    }
+    @Test
+    public void handleShowEditForm() throws Exception {
+        MockHttpServletRequestBuilder request =
+                get("/guests/update/21");
+        Guest guest = new Guest("Paweł", "Cwik", LocalDate.of(1986, 11, 13), Gender.MALE);
+        Mockito.when(guestService.getById(21)).thenReturn(guest);
+        mockMvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("guest"))
+                .andExpect(view().name("updateGuest"));
+        Mockito.verify(guestService, Mockito.times(1)).getById(21L);
     }
 }
