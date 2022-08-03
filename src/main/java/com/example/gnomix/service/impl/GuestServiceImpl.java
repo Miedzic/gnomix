@@ -1,7 +1,7 @@
 package com.example.gnomix.service.impl;
 
 import com.example.gnomix.domain.dao.Guest;
-import com.example.gnomix.domain.dto.GuestDto;
+import com.example.gnomix.domain.dto.GuestCreationDto;
 import com.example.gnomix.domain.dto.GuestUpdateDto;
 import com.example.gnomix.repository.GuestRepository;
 import com.example.gnomix.service.GuestService;
@@ -21,8 +21,8 @@ public class GuestServiceImpl implements GuestService {
         return this.guestRepository.findAll();
     }
 
-    public void createNewGuest(GuestDto dto) {
-        Guest newOne = new Guest(dto.getFirstName(), dto.getLastName(), dto.getDateOfBirth(), dto.getGender());
+    public void createNewGuest(GuestCreationDto dto) {
+        Guest newOne = new Guest(dto.getFirstName(), dto.getLastName(), dto.getDateOfBirth(), dto.getGender(),dto.isVip());
         this.guestRepository.save(newOne);
     }
 

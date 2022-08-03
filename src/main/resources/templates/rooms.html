@@ -5,14 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Gnomix - pokoje</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">Tanie Spanie - Panel Zarządzania</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -38,24 +39,30 @@
         </form>
     </div>
 </nav>
-<table>
-    <thead>
-    <tr>
-        <th>Numer</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="room : ${rooms}">
-        <td th:text="${room.number}"/>
-        <td th:text="${room.size}"/>
-        <td>
-            <a th:href="@{/rooms/delete/{id}(id=${room.id})}">Usuń</a>
-        </td>
-        <td>
-            <a th:href="@{/rooms/edit/{id}(id=${room.id})}">Edytuj</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="p-3 text-center bg-light">
+    <h2 class="mb-3">Lista Rezerwacji</h2>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Numer</th>
+            <th>Rozmiar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room : ${rooms}">
+            <td th:text="${room.number}"/>
+            <td th:text="${room.size}"/>
+            <td>
+                <a th:href="@{/rooms/delete/{id}(id=${room.id})}">Usuń</a>
+            </td>
+            <td>
+                <a th:href="@{/rooms/edit/{id}(id=${room.id})}">Edytuj</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

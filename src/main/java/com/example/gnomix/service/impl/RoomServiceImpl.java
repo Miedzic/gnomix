@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -28,11 +29,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     public void removeById(long id) {
-        this.roomRepository.deleteById(id);
+        roomRepository.deleteById(id);
     }
 
     public Room findById(long id) {
-        return this.roomRepository.getById(id);
+        return roomRepository.getById(id);
     }
 
     public void update(long id, String number, String bedsDesc) {
@@ -58,4 +59,15 @@ public class RoomServiceImpl implements RoomService {
             throw new IllegalArgumentException();
         }
     };
+
+    public List<Room> getRoomsForSize(final int size) {
+        return findAll()
+                .stream()
+                .filter(room -> room.getSize() >= size)
+                .collect(Collectors.toList());
+    }
+
+    public Optional<Room> getRoomById(final long roomId) {
+        return roomRepository.findById(roomId);
+    }
 }

@@ -1,12 +1,10 @@
 package com.example.gnomix.controller;
 
 import com.example.gnomix.domain.dao.Guest;
-import com.example.gnomix.domain.dto.GuestDto;
+import com.example.gnomix.domain.dto.GuestCreationDto;
 import com.example.gnomix.domain.dto.GuestUpdateDto;
-import com.example.gnomix.mapper.GuestMapper;
 import com.example.gnomix.service.GuestService;
 import lombok.RequiredArgsConstructor;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,7 +30,7 @@ public class GuestController {
     }
 
     @PostMapping
-    public String handleCreateNewGuest(@Valid GuestDto dto, BindingResult result, Model model) {
+    public String handleCreateNewGuest(@Valid GuestCreationDto dto, BindingResult result, Model model) {
         if(result.hasErrors()){
            model.addAttribute("errors",result.getAllErrors());
             return "createNewGuest";

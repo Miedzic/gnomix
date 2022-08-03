@@ -1,9 +1,6 @@
 package com.example.gnomix.domain.dao;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,15 +21,21 @@ public class Guest {
     private String lastName;
     private LocalDate dateOfBirth;
     private Gender gender;
-
-
+    private boolean vip;
 
     public Guest(String firstName, String lastName, LocalDate dateOfBirth, Gender gender) {
-        this.id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
+        this.vip = false;
+    }
+    public Guest(final String firstName, final String lastName, final LocalDate dateOfBirth, final Gender gender, final boolean vip) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.vip = vip;
     }
 
     public void update(String firstName, String lastName, LocalDate dateOfBirth, Gender gender) {
@@ -40,6 +43,7 @@ public class Guest {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
-    }
+        this.vip = false;
 
+    }
 }

@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"
 
-xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Tanie Spanie - goście</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">Tanie Spanie - Panel Zarządzania</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -39,30 +40,35 @@ xmlns:th="http://www.thymeleaf.org">
         </form>
     </div>
 </nav>
-<table>
-    <thead>
+<div class="p-3 text-center bg-light">
+    <h2 class="mb-3">Lista Gości</h2>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Data urodzenia</th>
             <th>Płeć</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
 
-    </tbody>
-    <tr th:each="guest : ${guests}">
-        <td th:text="${guest.firstName}"></td>
-        <td th:text="${guest.lastName}"></td>
-        <td th:text="${guest.dateOfBirth}"></td>
-        <td th:text="${guest.gender}"></td>
-        <td>
-            <a th:href="@{/guests/delete/{id}(id=${guest.id})}">Usuń</a>
-        </td>
-        <td>
-            <a th:href="@{/guests/update/{id}(id=${guest.id})}">Edytuj</a>
-        </td>
-    </tr>
-</table>
+        </tbody>
+        <tr th:each="guest : ${guests}">
+            <td th:text="${guest.firstName}"></td>
+            <td th:text="${guest.lastName}"></td>
+            <td th:text="${guest.dateOfBirth}"></td>
+            <td th:text="${guest.gender}"></td>
+            <td>
+                <a th:href="@{/guests/delete/{id}(id=${guest.id})}">Usuń</a>
+            </td>
+            <td>
+                <a th:href="@{/guests/update/{id}(id=${guest.id})}">Edytuj</a>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

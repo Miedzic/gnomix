@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Gnomix - Panel Zarządzania.</a>
+    <a class="navbar-brand" href="/">Tanie spanie - Panel Zarządzania.</a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
@@ -48,6 +48,11 @@
             <label for="newreservationsize">Ile osób:</label>
             <input type="number" name="size" required
                    class="form-control" id="newreservationsize"/>
+        </div>
+        <div class="form-group">
+            <label for="newreservationsize">Twój email</label>
+            <input type="email" name="email" required
+                   class="form-control" id="newreservationemail"/>
         </div>
         <input type="submit" class="btn btn-primary" value="Utwórz rezerwację" />
         <div th:if="${not #lists.isEmpty(errors)}">
